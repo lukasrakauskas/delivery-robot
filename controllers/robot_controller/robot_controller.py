@@ -19,6 +19,8 @@ wheels = [
     robot.getDevice('front_left_wheel')
 ]
 
+gps = robot.getDevice('gps')
+gps.enable(TIME_STEP)
 
 def wheel_set_speed(wheel, speed):
     if speed >= 0.0:
@@ -34,7 +36,7 @@ def wheels_set_speed(speed):
         wheel_set_speed(wheel, speed)
 
 
-wheels_set_speed(2.0)
+# wheels_set_speed(10.0)
 
 time = 0.0
 while robot.step(timestep) != -1:
@@ -43,5 +45,7 @@ while robot.step(timestep) != -1:
     direction = 0.5 * math.sin(time)
     steering[0].setPosition(direction)
     steering[1].setPosition(direction)
+
+    print(gps.getValues())
 
     pass
